@@ -1,0 +1,1 @@
+Compare basic ArcGIS map with DARMC map on Performance tab of inspect element. (Speed, number of recalculations)
