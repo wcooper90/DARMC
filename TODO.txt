@@ -1,1 +1,2 @@
 Compare basic ArcGIS map with DARMC map on Performance tab of inspect element. (Speed, number of recalculations)
+Figure out how to transfer existing files (html, css, js) onto example in this repository (and to actually have something visual show up)
