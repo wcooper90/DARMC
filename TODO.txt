@@ -1,2 +1,13 @@
 Compare basic ArcGIS map with DARMC map on Performance tab of inspect element. (Speed, number of recalculations)
+For a ~10 second performance test including reloading page + zooming in and out:
+  - darmc average 38fps, test average 29 38fps
+  - darmc min fpd 4.8, test 3.2 38fps
+  - in Call Tree, JIT function and IDLE take most time for darmc (1.3 and 4.6 seconds)
+  - in Call Tree, JIT function and IDLE take most time for test (1.7 and 1.2 seconds)
+  - Waterfall records show different events for the same tests (???)
+  - In memory snapshot, darmc is ~13 MB larger
+  - ~13 MB difference mostly accounted for by domNode
+  - Do not know how much of this is a result of the specific wifi connection and  browser
+
+
 Figure out how to transfer existing files (html, css, js) onto example in this repository (and to actually have something visual show up)
