@@ -11,3 +11,6 @@ For a ~10 second performance test including reloading page + zooming in and out:
 
 
 Figure out how to transfer existing files (html, css, js) onto example in this repository (and to actually have something visual show up)
+
+11/29
+get layers to show up in calcitemap.html (or put layers widget into DARMC replica.html)

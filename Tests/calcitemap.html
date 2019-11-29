@@ -10,7 +10,7 @@
   For more information about the frameworks-bootstrap sample, read the original sample description at developers.arcgis.com.
   https://developers.arcgis.com/javascript/latest/sample-code/frameworks-bootstrap/index.html
   -->
-<title>Calcite Maps and Bootstrap - 4.13</title>
+    <title>Calcite Maps and Bootstrap - 4.13</title>
 
     <!-- Calcite Bootstrap -->
     <link
@@ -204,7 +204,29 @@
             ></a>
           </div>
         </div>
-        <p1>bruh</p1>
+        <ul>
+          <li class="esriLayer esriListVisible esriHasTabContent esriTabMenuVisible" role="menuitem">
+            <div class = "esriTitle">
+              <div class="esriTitleContainer">
+                <input type="checkbox" id="Checkbox1" data-layer-index="12" class="esriCheckbox">
+                <label class="esriLabel" for="dijit__TemplatedMixin_0_checkbox_12">
+                  Roman Roads
+                </label>
+              </div>
+            </div>
+          </li>
+          <li class="esriLayer esriListVisible esriHasTabContent esriTabMenuVisible" role="menuitem">
+            <div class = "esriTitle">
+              <div class="esriTitleContainer">
+                <input type="checkbox" id="dijit__TemplatedMixin_0_checkbox_12" data-layer-index="12" class="esriCheckbox">
+                <label class="esriLabel" for="dijit__TemplatedMixin_0_checkbox_12">
+                 Shipwrecks2
+                </label>
+              </div>
+            </div>
+          </li>
+
+        </ul>
         <div
           id="collapseBasemaps"
           class="panel-collapse collapse"
@@ -434,6 +456,13 @@
         CalciteMapsArcGIS,
         FeatureLayer
       ) {
+
+        var roman_roads = new FeatureLayer({
+          url: "https://services1.arcgis.com/qN3V93cYGMKQCOxL/arcgis/rest/services/Roads/FeatureServer/0"
+        });
+
+
+
         /******************************************************************
          *
          * App settings
@@ -467,6 +496,13 @@
         var map = new Map({
           basemap: "topo-vector"
         });
+
+        var checkbox = document.getElementById("Checkbox1");
+        checkbox.onclick = function () {
+          roman_roads.visible = this.checked;
+          map.add(roman_roads, 0);
+
+        };
 
 
         // 2D view
@@ -573,6 +609,7 @@
           });
         });
 
+
         /******************************************************************
          *
          * Apply Calcite Maps CSS classes to change application on the fly
@@ -581,6 +618,7 @@
          * http://github.com/esri/calcite-maps
          *
          ******************************************************************/
+
 
         const cssSelectorUi = [
           document.querySelector(".calcite-navbar"),

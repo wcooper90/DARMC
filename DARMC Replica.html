@@ -1,17 +1,35 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
     <title>Replica</title>
-    <link rel="stylesheet" href="https://js.arcgis.com/4.13/esri/themes/light/main.css">
+    <link
+      rel="stylesheet"
+      href="https://esri.github.io/calcite-maps/dist/css/calcite-maps-bootstrap.min-v0.8.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://esri.github.io/calcite-maps/dist/css/calcite-maps-arcgis-4.x.min-v0.8.css"
+    />
+
+    <!-- ArcGIS JS 4 -->
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/4.13/esri/themes/light/main.css"
+    />
     <script src="https://js.arcgis.com/4.13/"></script>
+
     <style>
-      html, body, #viewDiv {
-        padding: 0;
+      html,
+      body {
         margin: 0;
+        padding: 0;
         height: 100%;
-        width: 100%;
       }
     </style>
     <script>
@@ -20,6 +38,11 @@
        "esri/views/MapView",
        "esri/layers/FeatureLayer"
      ], function(Map, MapView, FeatureLayer) {
+
+       // Trailheads feature layer (points)
+      var roman_roads = new FeatureLayer({
+        url: "https://services1.arcgis.com/qN3V93cYGMKQCOxL/arcgis/rest/services/Roads/FeatureServer/0"
+      });
 
        var map = new Map({
          basemap: "topo-vector"
@@ -32,12 +55,12 @@
          zoom: 5
        });
 
-       // Trailheads feature layer (points)
-      var roman_roads = new FeatureLayer({
-        url: "https://services1.arcgis.com/qN3V93cYGMKQCOxL/arcgis/rest/services/Roads/FeatureServer/0"
-      });
-
-      map.add(roman_roads, 0);
+      //map.add(roman_roads, 0);
+      var checkbox = document.getElementById("Checkbox1");
+      checkbox.onclick = function () {
+        roman_roads.visible = this.checked;
+        map.add(roman_roads, 0);
+      }
 
 
       var shipwrecks = new FeatureLayer({
@@ -51,7 +74,88 @@
      // next tutorial is popup tutorial
     </script>
   </head>
-  <body>
+  <body class="calcite-maps calcite-nav-top">
     <div id="viewDiv"></div>
+    <nav
+      class="navbar calcite-navbar navbar-fixed-top calcite-text-light calcite-bg-dark"
+    >
+      <!-- Menu -->
+      <div
+        class="dropdown calcite-dropdown calcite-text-dark calcite-bg-light"
+        role="presentation"
+      >
+        <a
+          class="dropdown-toggle"
+          role="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <div class="calcite-dropdown-toggle">
+            <span class="sr-only">Toggle dropdown menu</span> <span></span>
+            <span></span> <span></span> <span></span>
+          </div>
+        </a>
+        <ul class="dropdown-menu">
+          <li class="active">
+            <a
+              class="hidden-md hidden-lg"
+              href="#mapTab"
+              aria-controls="mapTab"
+              role="tab"
+              data-toggle="tab"
+            >
+              Map</a
+            >
+          </li>
+          <li>
+            <a
+              class="hidden-md hidden-lg"
+              href="#sceneTab"
+              aria-controls="sceneTab"
+              role="tab"
+              data-toggle="tab"
+            >
+              Scene</a
+            >
+          </li>
+          <li>
+            <a role="button" data-target="#panelBasemaps" aria-haspopup="true"
+              ><span class="glyphicon glyphicon-th-large"></span> Basemaps</a
+            >
+          </li>
+          <li>
+            <a role="button" data-target="#panelLayers" aria-haspopup="true"
+              ><span class="glyphicon glyphicon-th-large"></span> Layers</a
+            >
+          </li>
+          <li>
+            <a role="button" data-target="#panelSettings" aria-haspopup="true"
+              ><span class="glyphicon glyphicon-cog"></span> Settings</a
+            >
+          </li>
+          <li>
+            <a role="button" id="calciteToggleNavbar" aria-haspopup="true"
+              ><span class="glyphicon glyphicon-fullscreen"></span> Full Map</a
+            >
+          </li>
+        </ul>
+      </div>
+      <!-- Title -->
+      <div class="calcite-title calcite-overflow-hidden">
+        <span class="calcite-title-main">DARMC</span>
+        <span class="calcite-title-divider hidden-xs"></span>
+        <span class="calcite-title-sub hidden-xs">
+          <div class = "esriTitle">
+            <div class="esriTitleContainer">
+              <input type="checkbox" id="Checkbox1" data-layer-index="12" class="esriCheckbox">
+              <label class="esriLabel" for="dijit__TemplatedMixin_0_checkbox_12">
+                Roman Roads
+              </label>
+            </div>
+          </div></span>
+      </div>
+      <!-- Nav -->
+
+    </nav>
   </body>
 </html>
