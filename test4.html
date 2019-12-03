@@ -16,6 +16,8 @@
   <!-- ArcGIS JS 4 -->
   <link rel="stylesheet" href="https://js.arcgis.com/4.7/esri/css/main.css">
 
+
+
   <style>
     html,
     body {
@@ -45,6 +47,8 @@
       </a>
       <ul class="dropdown-menu">
         <li><a role="button" data-target="#panelBasemaps" aria-haspopup="true"><span class="glyphicon glyphicon-th-large"></span> Basemaps</a></li>
+        <li><a role="button" data-target="#panelLayers" aria-haspopup="true"><span class="glyphicon glyphicon-cog"></span> Layers1</a></li>
+        <li><a role="button" data-target="#panelLayers2" aria-haspopup="true"><span class="glyphicon glyphicon-cog"></span> Layers2</a></li>
         <li><a role="button" data-target="#panelSettings" aria-haspopup="true"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
         <li><a role="button" id="calciteToggleNavbar" aria-haspopup="true"><span class="glyphicon glyphicon-fullscreen"></span> Full Map</a></li>
       </ul>
@@ -54,14 +58,6 @@
       <span class="calcite-title-main">DARMC</span>
       <span class="calcite-title-divider hidden-xs"></span>
       <span class="calcite-title-sub hidden-xs">A modern framework for building map apps</span>
-        <div class = "esriTitle">
-          <div class="esriTitleContainer">
-            <input type="checkbox" id="Checkbox1" data-layer-index="12" class="esriCheckbox">
-            <label class="esriLabel" for="dijit__TemplatedMixin_0_checkbox_12">
-              Roman Roads
-            </label>
-          </div>
-        </div>
     </div>
     <!-- Nav -->
     <ul class="nav navbar-nav calcite-nav">
@@ -152,7 +148,7 @@
             <div class="esriTitleContainer">
               <input type="checkbox" id="dijit__TemplatedMixin_0_checkbox_12" data-layer-index="12" class="esriCheckbox">
               <label class="esriLabel" for="dijit__TemplatedMixin_0_checkbox_12">
-               Shipwrecks2
+               Something else
               </label>
             </div>
           </div>
@@ -169,63 +165,65 @@
       </div>
     </div>
 
-    <!-- Panel Settings -->
 
-    <div id="panelSettings" class="panel panel-map collapse">
-      <div id="headingSettings" class="panel-heading">
+
+    <div id="panelLayers2" class="panel collapse">
+      <div id="headingBasemaps" class="panel-heading" role="tab">
         <div class="panel-title">
           <a
-            class="panel-toggle"
+            class="panel-toggle collapsed"
             role="button"
             data-toggle="collapse"
-            href="#collapseSettings"
-            data-parent="#panelAccordion"
-            aria-expanded="true"
-            aria-controls="collapseSettings"
-            ><span class="glyphicon glyphicon-cog" aria-hidden="true"></span
-            ><span class="panel-label">Settings</span></a
+            href="#collapseBasemaps"
+            aria-expanded="false"
+            aria-controls="collapseBasemaps"
+            ><span
+              class="glyphicon glyphicon-th-large"
+              aria-hidden="true"
+            ></span
+            ><span class="panel-label">Layers</span></a
           >
           <a
             class="panel-close"
             role="button"
             data-toggle="collapse"
-            data-target="#panelSettings"
+            data-target="#panelLayers"
             ><span class="esri-icon esri-icon-close" aria-hidden="true"></span
           ></a>
         </div>
       </div>
+      <ul>
+        <li class="esriLayer esriListVisible esriHasTabContent esriTabMenuVisible" role="menuitem">
+          <div class = "esriTitle">
+            <div class="esriTitleContainer">
+              <input type="checkbox" id="Checkbox2" data-layer-index="12" class="esriCheckbox">
+              <label class="esriLabel" for="dijit__TemplatedMixin_0_checkbox_12">
+                Shipwrecks
+              </label>
+            </div>
+          </div>
+        </li>
+        <li class="esriLayer esriListVisible esriHasTabContent esriTabMenuVisible" role="menuitem">
+          <div class = "esriTitle">
+            <div class="esriTitleContainer">
+              <input type="checkbox" id="dijit__TemplatedMixin_0_checkbox_12" data-layer-index="12" class="esriCheckbox">
+              <label class="esriLabel" for="dijit__TemplatedMixin_0_checkbox_12">
+               Something else again
+              </label>
+            </div>
+          </div>
+        </li>
+
+      </ul>
       <div
-        id="collapseSettings"
+        id="collapseBasemaps"
         class="panel-collapse collapse"
         role="tabpanel"
-        aria-labelledby="headingSettings"
+        aria-labelledby="headingBasemaps"
       >
-        <div class="panel-body">
-          <div class="form-horizontal">
-            <!-- Theme -->
-
-            <div class="form-group">
-              <label for="settingsTheme" class="col-xs-3 control-label"
-                >Theme</label
-              >
-              <div class="col-xs-9">
-                <select id="settingsTheme" class="form-control">
-                  <option
-                    value="calcite-dark"
-                    data-textcolor="calcite-text-light"
-                    data-bgcolor="calcite-bg-dark"
-                    selected
-                    >Calcite Dark</option
-                  >
-                  <option
-                    value="calcite-light"
-                    data-textcolor="calcite-text-dark"
-                    data-bgcolor="calcite-bg-light"
-                    >Calcte Light</option
-                  >
-                </select>
-              </div>
-            </div>
+        <div class="panel-body"><div id="layersPanelDiv"></div></div>
+      </div>
+    </div>
 
     <!-- Panel Settings -->
 
@@ -339,9 +337,20 @@
       "bootstrap/Collapse",
       "bootstrap/Dropdown",
       "bootstrap/Tab",
-      "dojo/domReady!"
+      "dojo/domReady!",
+      //"esri/layers/ArcGISDynamicMapServiceLayer",
+      //"esri/layers/ImageParameters",
+      "dojo/dom"
     ], function(Map, MapView, SceneView, Search, Basemaps, watchUtils,
       query, on, CalciteMaps, CalciteMapsArcGIS,FeatureLayer) {
+
+        //create feature layer class here
+       var fl = new FeatureLayer({
+          url: "https://services1.arcgis.com/qN3V93cYGMKQCOxL/arcgis/rest/services/Roads/FeatureServer/0"
+       });
+       var fl2 = new FeatureLayer({
+         url: "https://services1.arcgis.com/qN3V93cYGMKQCOxL/arcgis/rest/services/Shipwrecks/FeatureServer/0"
+       });
       /******************************************************************
        *
        * App settings
@@ -350,11 +359,12 @@
       app = {
         center: [12.8, 46.02],
         scale: 50000000,
-        basemap: "streets",
+        basemap: "topo-vector",
         viewPadding: {
           top: 50,
           bottom: 0
         },
+        //layers: [fl2],
         uiComponents: ["zoom", "compass", "attribution"],
         mapView: null,
         sceneView: null,
@@ -369,24 +379,23 @@
        *
        ******************************************************************/
 
-       //create feature layer class here
-       const fl = new FeatureLayer({
-         url: "https://services1.arcgis.com/qN3V93cYGMKQCOxL/arcgis/rest/services/Roads/FeatureServer/0"
-      });
-      const fl2 = new FeatureLayer({
-        url: "https://services1.arcgis.com/qN3V93cYGMKQCOxL/arcgis/rest/services/Shipwrecks/FeatureServer/0"
-      });
-
       // Map
       var map = new Map({
         basemap: app.basemap,
-        layers: [fl2] //Add feature layer to the map
+        //layers: app.layers //Add feature layer to the map
       });
+      //map.add(fl2, 0);
 
       var checkbox = document.getElementById("Checkbox1");
       checkbox.onclick = function () {
-        roman_roads.visible = this.checked;
+        fl.visible = this.checked;
         map.add(fl, 0);
+      }
+
+      var checkbox = document.getElementById("Checkbox2");
+      checkbox.onclick = function () {
+        fl2.visible = this.checked;
+        map.add(fl2, 0);
       }
 
       // 2D view
