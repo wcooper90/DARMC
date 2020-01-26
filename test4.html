@@ -47,8 +47,7 @@
       </a>
       <ul class="dropdown-menu">
         <li><a role="button" data-target="#panelBasemaps" aria-haspopup="true"><span class="glyphicon glyphicon-th-large"></span> Basemaps</a></li>
-        <li><a role="button" data-target="#panelLayers" aria-haspopup="true"><span class="glyphicon glyphicon-cog"></span> Layers1</a></li>
-        <li><a role="button" data-target="#panelLayers2" aria-haspopup="true"><span class="glyphicon glyphicon-cog"></span> Layers2</a></li>
+        <li><a role="button" data-target="#panelLayers" aria-haspopup="true"><span class="glyphicon glyphicon-cog"></span> Layers</a></li>
         <li><a role="button" data-target="#panelSettings" aria-haspopup="true"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
         <li><a role="button" id="calciteToggleNavbar" aria-haspopup="true"><span class="glyphicon glyphicon-fullscreen"></span> Full Map</a></li>
       </ul>
@@ -132,89 +131,142 @@
           ></a>
         </div>
       </div>
-      <ul>
-        <li class="esriLayer esriListVisible esriHasTabContent esriTabMenuVisible" role="menuitem">
-          <div class = "esriTitle">
-            <div class="esriTitleContainer">
-              <input type="checkbox" id="Checkbox1" data-layer-index="12" class="esriCheckbox">
-              <label class="esriLabel" for="dijit__TemplatedMixin_0_checkbox_12">
-                Roman Roads
-              </label>
+
+
+      <div class="panel-body">
+        <div class="form-horizontal">
+
+          <!-- Theme -->
+
+          <div class="form-group">
+            <label for="settingsTheme" class="col-xs-3 control-label">Theme</label>
+            <div class="col-xs-9">
+              <select id="settingsTheme" class="form-control">
+                <option value="calcite-dark" data-textcolor="calcite-text-light" data-bgcolor="calcite-bg-dark" selected>Calcite Dark</option>
+                <option value="calcite-light" data-textcolor="calcite-text-dark" data-bgcolor="calcite-bg-light">Calcte Light</option>
+              </select>
             </div>
           </div>
-        </li>
-        <li class="esriLayer esriListVisible esriHasTabContent esriTabMenuVisible" role="menuitem">
-          <div class = "esriTitle">
-            <div class="esriTitleContainer">
-              <input type="checkbox" id="dijit__TemplatedMixin_0_checkbox_12" data-layer-index="12" class="esriCheckbox">
-              <label class="esriLabel" for="dijit__TemplatedMixin_0_checkbox_12">
-               Something else
-              </label>
+
+          <!-- Color -->
+
+          <div class="form-group">
+            <label for="settingsColor" class="col-xs-3 control-label">Color</label>
+            <div class="col-xs-9">
+              <select id="settingsColor" class="form-control">
+                <option value="" data-theme="calcite-theme-light">Calcite Default</option>
+                <option value="calcite-bgcolor-dark-blue" data-textcolor="calcite-text-light" data-bgcolor="calcite-bg-custom">Calcite Dark Blue</option>
+                <option value="calcite-bgcolor-dark-green" data-textcolor="calcite-text-light" data-bgcolor="calcite-bg-custom">Calcite Dark Green</option>
+                <option value="calcite-bgcolor-dark-brown" data-textcolor="calcite-text-light" data-bgcolor="calcite-bg-custom">Calcite Dark Brown </option>
+                <option value="calcite-bgcolor-dark-red" data-textcolor="calcite-text-light" data-bgcolor="calcite-bg-custom">Calcite Dark Red</option>
+                <option value="calcite-bgcolor-darkest-grey" data-textcolor="calcite-text-light" data-bgcolor="calcite-bg-custom">Calcite Darkest Grey</option>
+                <option value="calcite-bgcolor-lightest-grey" data-textcolor="calcite-text-dark" data-bgcolor="calcite-bg-custom">Calcite Lightest Grey</option>
+                <option value="calcite-bgcolor-blue-75" data-textcolor="calcite-text-light" data-bgcolor="calcite-bg-custom">Calcite Blue 75%</option>
+                <option value="calcite-bgcolor-black-75" data-textcolor="calcite-text-light" data-bgcolor="calcite-bg-custom">Calcite Black 75%</option>
+              </select>
             </div>
           </div>
-        </li>
 
-      </ul>
-      <div
-        id="collapseBasemaps"
-        class="panel-collapse collapse"
-        role="tabpanel"
-        aria-labelledby="headingBasemaps"
-      >
-        <div class="panel-body"><div id="layersPanelDiv"></div></div>
-      </div>
-    </div>
+          <!-- Widgets -->
 
+          <div class="form-group">
+            <label for="settingsWidgets" class="col-xs-3 control-label">Widgets</label>
+            <div class="col-xs-9">
+              <select id="settingsWidgets" class="form-control">
+                <option value="calcite-widgets-dark">Calcite Dark</option>
+                <option value="calcite-widgets-light" selected>Calcite Light</option>
+              </select>
+            </div>
+          </div>
 
+          <!-- Layout -->
 
-    <div id="panelLayers2" class="panel collapse">
-      <div id="headingBasemaps" class="panel-heading" role="tab">
-        <div class="panel-title">
-          <a
-            class="panel-toggle collapsed"
-            role="button"
-            data-toggle="collapse"
-            href="#collapseBasemaps"
-            aria-expanded="false"
-            aria-controls="collapseBasemaps"
-            ><span
-              class="glyphicon glyphicon-th-large"
-              aria-hidden="true"
-            ></span
-            ><span class="panel-label">Layers</span></a
-          >
-          <a
-            class="panel-close"
-            role="button"
-            data-toggle="collapse"
-            data-target="#panelLayers"
-            ><span class="esri-icon esri-icon-close" aria-hidden="true"></span
-          ></a>
+          <div class="form-group">
+            <label for="settingsLayout" class="col-xs-3 control-label">Layout</label>
+            <div class="col-xs-9">
+              <select id="settingsLayout" class="form-control">
+                <option value="calcite-nav-top" data-nav="navbar-fixed-top" selected>Top</option>
+                <option value="calcite-nav-bottom" data-nav="navbar-fixed-bottom">Bottom</option>
+              </select>
+            </div>
+          </div>
+
         </div>
       </div>
-      <ul>
-        <li class="esriLayer esriListVisible esriHasTabContent esriTabMenuVisible" role="menuitem">
-          <div class = "esriTitle">
-            <div class="esriTitleContainer">
-              <input type="checkbox" id="Checkbox2" data-layer-index="12" class="esriCheckbox">
-              <label class="esriLabel" for="dijit__TemplatedMixin_0_checkbox_12">
-                Shipwrecks
-              </label>
-            </div>
-          </div>
-        </li>
-        <li class="esriLayer esriListVisible esriHasTabContent esriTabMenuVisible" role="menuitem">
-          <div class = "esriTitle">
-            <div class="esriTitleContainer">
-              <input type="checkbox" id="dijit__TemplatedMixin_0_checkbox_12" data-layer-index="12" class="esriCheckbox">
-              <label class="esriLabel" for="dijit__TemplatedMixin_0_checkbox_12">
-               Something else again
-              </label>
-            </div>
-          </div>
-        </li>
 
+      <div>
+        <div class="row">
+             <div class="col-lg-12">
+           <div class="button-group">
+              <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"> Environmental History</button>
+      <ul class="dropdown-menu">
+        <li><a class="small" data-value="option1" tabIndex="-1"><input type="checkbox"/>Option 1</a></li>
+        <li><a class="small" data-value="option2" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 2</a></li>
+        <li><a class="small" data-value="option3" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 3</a></li>
+        <li><a class="small" data-value="option4" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 4</a></li>
+        <li><a class="small" data-value="option5" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 5</a></li>
+        <li><a class="small" data-value="option6" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 6</a></li>
       </ul>
+        </div>
+      </div>
+        </div>
+      </div>
+
+      <div >
+        <div class="row">
+             <div class="col-lg-12">
+           <div class="button-group">
+              <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"> Archaeology</button>
+      <ul class="dropdown-menu">
+        <li><a class="small" data-value="option1" tabIndex="-1"><input type="checkbox"/>Option 1</a></li>
+        <li><a class="small" data-value="option2" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 2</a></li>
+        <li><a class="small" data-value="option3" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 3</a></li>
+        <li><a class="small" data-value="option4" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 4</a></li>
+        <li><a class="small" data-value="option5" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 5</a></li>
+        <li><a class="small" data-value="option6" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 6</a></li>
+      </ul>
+        </div>
+      </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="row">
+             <div class="col-lg-12">
+           <div class="button-group">
+              <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"> Midieval World</button>
+      <ul class="dropdown-menu">
+        <li><a class="small" data-value="option1" tabIndex="-1"><input type="checkbox"/>Option 1</a></li>
+        <li><a class="small" data-value="option2" tabIndex="-1"><input id="Checkbox2" type="checkbox"/>&nbsp;Shipwrecks</a></li>
+        <li><a class="small" data-value="option3" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 3</a></li>
+        <li><a class="small" data-value="option4" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 4</a></li>
+        <li><a class="small" data-value="option5" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 5</a></li>
+        <li><a class="small" data-value="option6" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 6</a></li>
+      </ul>
+        </div>
+      </div>
+        </div>
+      </div>
+
+      <div >
+        <div class="row">
+             <div class="col-lg-12">
+           <div class="button-group">
+              <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"> Roman World </button>
+      <ul class="dropdown-menu">
+        <li><a class="small" data-value="option1" tabIndex="-1"><input id="Checkbox1" type="checkbox"/> Roman Roads </a></li>
+        <li><a class="small" data-value="option2" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 2</a></li>
+        <li><a class="small" data-value="option3" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 3</a></li>
+        <li><a class="small" data-value="option4" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 4</a></li>
+        <li><a class="small" data-value="option5" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 5</a></li>
+        <li><a class="small" data-value="option6" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 6</a></li>
+      </ul>
+        </div>
+      </div>
+        </div>
+      </div>
+
+
       <div
         id="collapseBasemaps"
         class="panel-collapse collapse"
@@ -224,6 +276,8 @@
         <div class="panel-body"><div id="layersPanelDiv"></div></div>
       </div>
     </div>
+
+
 
     <!-- Panel Settings -->
 
@@ -254,7 +308,7 @@
             <!-- Color -->
 
             <div class="form-group">
-              <label for="settingsColor" class="col-xs-3 control-label">Color</label>
+              <label for="olor" class="col-xs-3 control-label">Color</label>
               <div class="col-xs-9">
                 <select id="settingsColor" class="form-control">
                   <option value="" data-theme="calcite-theme-light">Calcite Default</option>
@@ -318,6 +372,36 @@
   <script src="https://js.arcgis.com/4.7/"></script>
 
   <script>
+  var options = [];
+
+  $( '.dropdown-menu a' ).on( 'click', function( event ) {
+
+     var $target = $( event.currentTarget ),
+         val = $target.attr( 'data-value' ),
+         $inp = $target.find( 'input' ),
+         idx;
+
+     if ( ( idx = options.indexOf( val ) ) > -1 ) {
+        options.splice( idx, 1 );
+        setTimeout( function() { $inp.prop( 'checked', false ) }, 0);
+     } else {
+        options.push( val );
+        setTimeout( function() { $inp.prop( 'checked', true ) }, 0);
+     }
+
+     $( event.target ).blur();
+
+     console.log( options );
+     return false;
+  });
+
+
+
+
+  </script>
+
+  <script>
+
     var app;
     require([
       "esri/Map",
@@ -386,14 +470,15 @@
       });
       //map.add(fl2, 0);
 
+
       var checkbox = document.getElementById("Checkbox1");
       checkbox.onclick = function () {
         fl.visible = this.checked;
         map.add(fl, 0);
       }
 
-      var checkbox = document.getElementById("Checkbox2");
-      checkbox.onclick = function () {
+      var checkbox2 = document.getElementById("Checkbox2");
+      checkbox2.onclick = function () {
         fl2.visible = this.checked;
         map.add(fl2, 0);
       }
